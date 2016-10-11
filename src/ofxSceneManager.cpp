@@ -53,6 +53,7 @@ void ofxSceneManager::draw() {
     }
 
     _fbo.begin();
+    ofClear(255, 255, 255, 0);
     _currentScene->drawScene();
     _fbo.end();
     
@@ -181,6 +182,8 @@ void ofxSceneManager::_mouseReleased(ofMouseEventArgs &args) {
 }
 
 void ofxSceneManager::_windowResized(ofResizeEventArgs &args) {
+    _fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
+    _nextFbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
     _currentScene->windowResized(args.width, args.height);
 }
 
